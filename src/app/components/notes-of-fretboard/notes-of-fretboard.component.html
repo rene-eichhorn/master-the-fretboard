@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="grid-container">
+    <div class="grid">
+        <mat-slide-toggle class= "slider" color="primary" (change)="updateWholeNotesStatus()">Whole Notes</mat-slide-toggle>
+        <mat-slide-toggle class= "slider" color="primary" (change)="updateSharpNotesStatus()">Sharp Notes</mat-slide-toggle>
+        <mat-slide-toggle class= "slider" color="primary" (change)="updateFlatNotesStatus()">Flat Notes</mat-slide-toggle>
+    </div>
+  </div>
+  <div class="grid-container">
+    <div class="grid">
+      <mat-form-field>
+        <mat-label>Time intervall</mat-label>
+        <mat-select [(ngModel)]="intervalTime" name="interval">
+          <mat-option *ngFor="let interval of timeIntervals" [value]="interval.value">
+            {{interval.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="button" 
+              (click)="start()" [disabled]="!((wholeNotesChecked || sharpNoteChecked || flatNotesChecked) && (intervalTime))">{{ buttonText }}</button>
+    </div>
+  </div>
+  <h1 class="note">{{ note }}</h1>
+</div>
